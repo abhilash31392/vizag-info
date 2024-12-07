@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vizag.org - Home</title>
+    <style>
+        /* Basic Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007bff;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .nav-bar {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-bar a:hover {
+            background-color: #0056b3;
+        }
+
+        main {
+            text-align: center;
+            padding: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .search-container {
+            margin-top: 20px;
+        }
+
+        .search-container input {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .search-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-container button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .service-buttons, .category-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #info, #categories {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with navigation bar -->
+    <header>
+        <h1>vizag.org</h1>
+        <nav class="nav-bar">
+            <a href="#home" onclick="showHome()">Home</a>
+            <a href="#service-areas" onclick="showServiceAreas()">Service Areas</a>
+            <a href="#about-us">About Us</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main content -->
+    <main id="main-content">
+        <!-- Home Section -->
+        <section id="home">
+            <img src="vizag.jpg" alt="Vizag Beach">
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Search for businesses or services">
+                <button onclick="performSearch()">Search</button>
+            </div>
+        </section>
+
+        <!-- Service Areas Section -->
+        <section id="service-areas" style="display: none;">
+            <h2>Our Service Areas</h2>
+            <div class="service-buttons">
+                <button onclick="selectArea('Seethammadhara')">Seethammadhara</button>
+                <button onclick="selectArea('MVP Colony')">MVP Colony</button>
+                <button onclick="selectArea('Gajuwaka')">Gajuwaka</button>
+                <button onclick="selectArea('Madhurawada')">Madhurawada</button>
+                <button onclick="selectArea('Yendada')">Yendada</button>
+                <button onclick="selectArea('Sujatha Nagar')">Sujatha Nagar</button>
+            </div>
+            <p id="info"></p>
+            <div id="categories" class="category-buttons"></div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 vizag.org. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Function to show the home section
+        function showHome() {
+            document.getElementById('home').style.display = 'block';
+            document.getElementById('service-areas').style.display = 'none';
+        }
+
+        // Function to show the service areas section
+        function showServiceAreas() {
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('service-areas').style.display = 'block';
+        }
+
+        // Function to perform search (placeholder)
+        function performSearch() {
+            alert('Search functionality coming soon!');
+        }
+
+        // Function to display selected service area and create category buttons
+        function selectArea(area) {
+            const infoElement = document.getElementById('info');
+            const categoriesElement = document.getElementById('categories');
+
+            // Update the info message
+            infoElement.textContent = `You selected the service area: ${area}. Please choose a category below.`;
+
+            // Categories to display
+            const categories = [
+                'Restaurants',
+                'Schools',
+                'Colleges',
+                'Hospitals and Clinics',
+                'Hotels',
+                'Shopping Malls',
+                'Beauty Salons'
+            ];
+
+            // Clear previous buttons and generate new ones
+            categoriesElement.innerHTML = '';
+            categories.forEach(category => {
+                const button = document.createElement('button');
+                button.textContent = category;
+                button.onclick = () => showCategoryInfo(area, category);
+                categoriesElement.appendChild(button);
+            });
+        }
+
+        // Function to show information when a category button is clicked
+        function showCategoryInfo(area, category) {
+            alert(`You selected "${category}" in the service area "${area}". More information coming soon!`);
+        }
+    </script>
+</body>
+</html>
